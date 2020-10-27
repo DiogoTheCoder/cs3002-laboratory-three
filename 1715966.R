@@ -84,6 +84,9 @@ treepred <-predict(fit, two_raw_x_test, type = 'class')
 print(accuracy(two_classes_y_test, treepred))
 print(confusion_matrix(two_classes_y_test, treepred))
 
-knn3pred = knn(two_raw_x_train, two_raw_x_test, two_classes_y_train, k=3)
-print(accuracy(two_classes_y_test, knn3pred))
-print(confusion_matrix(two_classes_y_test, knn3pred))
+kmeans <- c(3, 5, 7, 9)
+for (i in kmeans) {
+  knn3pred = knn(two_raw_x_train, two_raw_x_test, two_classes_y_train, k=i)
+  print(paste("KMeans:", i, accuracy(two_classes_y_test, knn3pred)))
+  print(confusion_matrix(two_classes_y_test, knn3pred))
+}
